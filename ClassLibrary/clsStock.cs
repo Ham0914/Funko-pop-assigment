@@ -1,4 +1,4 @@
-﻿namespace Testing4
+﻿namespace ClassLibrary
 {
     public class clsStock
     {
