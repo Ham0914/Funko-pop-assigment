@@ -23,45 +23,60 @@ namespace ClassLibrary
                 mIdNumber = value;
             }
         }
-        public bool InStock { get
+        public bool InStock
+        {
+            get
             {
                 return minstock;
-            } set
+            }
+            set
             {
                 minstock = value;
-            } 
+            }
         }
-        public DateTime DateAdded { get
+        public DateTime DateAdded
+        {
+            get
             {
                 return mDate;
-            } set
+            }
+            set
             {
                 mDate = value;
-            } 
+            }
         }
-        public int ItemQty { get
+        public int ItemQty
+        {
+            get
             {
                 return mItemQTY;
-            } set
+            }
+            set
             {
                 mItemQTY = value;
-            } 
+            }
         }
-        public string ItemTag { get
+        public string ItemTag
+        {
+            get
             {
                 return mItemTag;
-            } set
+            }
+            set
             {
                 mItemTag = value;
-            } 
+            }
         }
-        public string ItemDesc { get
+        public string ItemDesc
+        {
+            get
             {
                 return mItemDesc;
-            } set
+            }
+            set
             {
                 mItemDesc = value;
-            } 
+            }
         }
 
         public bool Find(int itemID)
@@ -72,7 +87,7 @@ namespace ClassLibrary
 
             DB.Execute("sproc_tblStock_FilterByItemID");
 
-            if(DB.Count == 1)
+            if (DB.Count == 1)
             {
                 mIdNumber = Convert.ToInt32(DB.DataTable.Rows[0]["itemID"]);
                 mItemQTY = Convert.ToInt32(DB.DataTable.Rows[0]["itemQTY"]);
@@ -88,6 +103,25 @@ namespace ClassLibrary
             {
                 return false;
             }
+        }
+
+        public string Valid(string itemQT, string descItem, string dateAdded, string tagItem)
+        {
+            String Error = "";
+            try
+            {
+                int itemQTtemp = Convert.ToInt32(itemQT);
+                if (itemQTtemp < 0)
+                {
+                    Error = Error + "Cant go lower then 0";
+                }
+
+            } catch {
+                Error = Error + "Invalid type";
+            }
+
+            return Error;
+       
         }
     }
 }
