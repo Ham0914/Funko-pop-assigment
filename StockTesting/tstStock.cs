@@ -5,8 +5,13 @@ using System;
 namespace Testing4
 {
     [TestClass]
-    public class tstStock
-    {
+    public class tstStock {
+
+        string itemQT = "100";
+        string TagItem = "Movie";
+        string descItem = " some desc";
+        string DateAdded = DateTime.Now.Date.ToString();
+
         [TestMethod]
         public void InstanceOk()
         {
@@ -92,13 +97,14 @@ namespace Testing4
             clsStock AnStock = new clsStock();
 
             Boolean Found = false;
-            Int32 IdNumber = 21;
+            Int32 itemID = 1;
 
-            Found = AnStock.Find(IdNumber);
+            Found = AnStock.Find(itemID);
             Assert.IsTrue(Found);
         }
 
-        public void TestIdNumberNoFond()
+        [TestMethod]
+        public void TestitemIDNoFond()
         {
             clsStock AnStock = new clsStock();
 
@@ -106,11 +112,11 @@ namespace Testing4
 
             Boolean OK = true;
 
-            Int32 IdNumber = 21;
+            Int32 itemID = 1;
 
-            Found = AnStock.Find(IdNumber); 
+            Found = AnStock.Find(itemID); 
 
-            if (AnStock.IdNum != 21)
+            if (AnStock.IdNum != 1)
             {
                 OK = false;
             }
@@ -130,14 +136,14 @@ namespace Testing4
           
             Boolean OK = true;
 
-       
-            Int32 ItemQTY = 21;
 
-    
-            Found = AnStock.Find(ItemQTY);
+            Int32 itemID = 1;
 
 
-            if (AnStock.ItemQty != 1)
+            Found = AnStock.Find(itemID);
+
+
+            if (AnStock.ItemQty != 100)
             {
                 OK = false;
             }
@@ -155,11 +161,11 @@ namespace Testing4
 
             Boolean OK = true;
 
-            Int32 itemtag = 21;
+            Int32 itemID = 1;
 
-            Found = AnStock.Find(itemtag);
+            Found = AnStock.Find(itemID);
 
-            if (AnStock.ItemTag != "Test Tag")
+            if (AnStock.ItemTag != "Movie")
             {
                 OK = false;
             }
@@ -176,12 +182,12 @@ namespace Testing4
             Boolean Found = false;
   
             Boolean OK = true;
- 
-            Int32 itemDesc = 21;
 
-            Found = AnStock.Find(itemDesc);
+            Int32 itemID = 1;
 
-            if (AnStock.ItemDesc != "Test Desc")
+            Found = AnStock.Find(itemID);
+
+            if (AnStock.ItemDesc != "Movie funko pop")
             {
                 OK = false;
             }
@@ -190,7 +196,7 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void TestInStock()
+        public void TestInStockFound()
         {
 
             clsStock AnStock = new clsStock();
@@ -199,9 +205,9 @@ namespace Testing4
    
             Boolean OK = true;
 
-            Int32 inStock = 21;
+            Int32 itemID = 1; ;
 
-            Found = AnStock.Find(inStock);
+            Found = AnStock.Find(itemID);
 
             if (AnStock.InStock != true)
             {
@@ -220,16 +226,87 @@ namespace Testing4
 
             Boolean OK = true;
 
-            Int32 dateadded = 21;
+            Int32 itemID = 1;
 
-            Found = AnStock.Find(dateadded);
+            Found = AnStock.Find(itemID);
 
-            if (AnStock.DateAdded != Convert.ToDateTime("25/03/2000"))
+            if (AnStock.DateAdded != Convert.ToDateTime("25/07/2020"))
             {
                 OK = false;
             }
 
             Assert.IsTrue(OK);
         }
+
+        [TestMethod]
+
+        public void ValidMethodOk()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            Error = AnStock.Valid(itemQT,descItem,DateAdded,TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void itemQTYMinLessOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string itemQT = "-1";
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void itemQTYMin()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+            int number = 0;
+
+            string itemQT = number.ToString();
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void itemQTYMinPlusOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+            int number = 1;
+
+            string itemQT = number.ToString();
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void itemQTYInavlidDataType()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            String itemQT = "two";
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreNotEqual(Error, "");
+        }
+
     }
 }
