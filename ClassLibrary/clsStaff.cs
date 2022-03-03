@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 
 namespace ClassLibrary
 {
@@ -104,18 +104,34 @@ namespace ClassLibrary
                 mDepartment = value;
             }
         }
-
+        
         public bool Find(int staffID)
         {
-            //set the private data members to the test data value 
-            mStaffID = 420;
-            mHireDate = Convert.ToDateTime("10/03/2022");
-            mStaffEmail = "name@email.com";
-            mStaffName = "Joe Bloggs";
-            mDepartment = "Test Department";
-            mActive = true;
-            //always return true
-            return true;
+            //create am instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the Stadd ID to search for
+            DB.AddParameter("@staffID", staffID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByStaffID");
+            //if one record is found (there should either be one or zero)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members
+                mStaffID = Convert.ToInt32(DB.DataTable.Rows[0]["staffID"]);
+                mStaffEmail = Convert.ToString(DB.DataTable.Rows[0]["staffEmail"]);
+                mStaffName = Convert.ToString(DB.DataTable.Rows[0]["staffName"]);
+                mDepartment = Convert.ToString(DB.DataTable.Rows[0]["department"]);
+                mHireDate = Convert.ToDateTime(DB.DataTable.Rows[0]["hireDate"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was found
+            else
+            {
+                //return false, indicating a problem
+                return false;
+            }
         }
     }
 }

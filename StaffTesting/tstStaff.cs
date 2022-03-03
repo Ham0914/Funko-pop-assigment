@@ -103,7 +103,7 @@ namespace Testing2
             //Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 staffID = 420;
+            Int32 staffID = 1;
             //invoke the method
             Found = aStaff.Find(staffID);
             //test to see if the result is true
@@ -120,11 +120,11 @@ namespace Testing2
             //boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 staffID = 420;
+            Int32 staffID = 1;
             //invoke the method
             Found = aStaff.Find(staffID);
             //check the staff ID
-            if (aStaff.staffID != 420)
+            if (aStaff.staffID != 1)
             {
                 OK = false;
             }
@@ -142,7 +142,7 @@ namespace Testing2
             //boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 staffID = 420;
+            Int32 staffID = 1;
             //invoke the method
             Found = aStaff.Find(staffID);
             //check the hire date
@@ -164,7 +164,7 @@ namespace Testing2
             //boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 staffID = 420;
+            Int32 staffID = 1;
             //invoke the method
             Found = aStaff.Find(staffID);
             //check the property
@@ -186,7 +186,7 @@ namespace Testing2
             //boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 staffID = 420;
+            Int32 staffID = 1;
             //invoke the method
             Found = aStaff.Find(staffID);
             //check the property
@@ -208,7 +208,7 @@ namespace Testing2
             //boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 staffID = 420;
+            Int32 staffID = 1;
             //invoke the method
             Found = aStaff.Find(staffID);
             //check the property
@@ -230,7 +230,7 @@ namespace Testing2
             //boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 staffID = 420;
+            Int32 staffID = 1;
             //invoke the method
             Found = aStaff.Find(staffID);
             //check the property
