@@ -108,6 +108,18 @@ namespace ClassLibrary
         public string Valid(string itemQT, string descItem, string dateAdded, string tagItem)
         {
             String Error = "";
+
+            if (tagItem.Length == 0)
+            {
+                Error = Error + "This field should not be empty";
+            }
+            if (tagItem.Length > 50)
+            {
+                Error = Error + "Cant be more then 50 ";
+
+            }
+
+
             try
             {
                 int itemQTtemp = Convert.ToInt32(itemQT);
@@ -120,8 +132,24 @@ namespace ClassLibrary
                 Error = Error + "Invalid type";
             }
 
+            try
+            {
+                DateTime DateAddedTemp = Convert.ToDateTime(dateAdded);
+
+                if (DateAddedTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "Date cannot be in future";
+                }
+
+            }
+            catch
+            {
+                Error = Error + "Invalid type";
+            }
+
             return Error;
-       
+
         }
+
     }
 }

@@ -302,11 +302,309 @@ namespace Testing4
 
             String Error = "";
 
-            String itemQT = "two";
+            string itemQT = "two";
 
             Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
             Assert.AreNotEqual(Error, "");
         }
 
+        [TestMethod]
+        public void itemTagMinLessOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string TagItem = "";
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void itemTagMin()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string TagItem = "a";
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void itemTagMinPlusOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string TagItem = "aa";
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void itemTagMaxLessOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string TagItem = "";
+            TagItem = TagItem.PadRight(49, 'a');
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void itemTagMaxPlusOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string TagItem = "";
+            TagItem = TagItem.PadRight(51, 'a');
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void itemTagMid()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string TagItem = "";
+            TagItem = TagItem.PadRight(25, 'a');
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void itemTagExtremeMax()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string TagItem = "";
+            TagItem = TagItem.PadRight(500, 'a');
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void itemDescMinLessOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string descItem = "";
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void itemDescMin()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string descItem = "a";
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void itemDescMinPlusOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string descItem = "aa";
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void itemDescMaxLessOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string descItem = "";
+            descItem = descItem.PadRight(49, 'a');
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void itemDescMaxPlusOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string descItem = "";
+            TagItem = descItem.PadRight(51, 'a');
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void itemDescMid()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string descItem = "";
+            descItem = descItem.PadRight(25, 'a');
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void itemDescExtremeMax()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            string descItem = "";
+            descItem = descItem.PadRight(500, 'a');
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedExtremeMin()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            TestDate =  TestDate.AddYears(-100);
+
+            string DateAdded = TestDate.ToString();
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedMinLessOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            TestDate = TestDate.AddYears(-1);
+
+            string DateAdded = TestDate.ToString();
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedMin()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            string DateAdded = TestDate.ToString();
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedMinPlusOne()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            TestDate = TestDate.AddYears(1);
+
+            string DateAdded = TestDate.ToString();
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedExtremeMax()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            TestDate = TestDate.AddYears(100);
+
+            string DateAdded = TestDate.ToString();
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedInvalidType()
+        {
+            clsStock AnStock = new clsStock();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            string DateAdded = "yes";
+
+            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Assert.AreNotEqual(Error, "");
+        }
     }
 }
