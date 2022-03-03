@@ -11,6 +11,7 @@
         <div>
             <asp:Label ID="lblitemID" runat="server" Text="Item ID" width="100px"></asp:Label>
             <asp:TextBox ID="txtitemID" runat="server"></asp:TextBox>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
         </div>
         <asp:Label ID="lblitemQTY" runat="server" Text="Item Quantity" width="100px"></asp:Label>
         <asp:TextBox ID="txtitemQTY" runat="server"></asp:TextBox>
@@ -29,7 +30,7 @@
         <asp:Label ID="lblError" runat="server"></asp:Label>
         <br />
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" Text="OK" />
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
     </form>
 </body>
 </html>
