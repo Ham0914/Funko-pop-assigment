@@ -102,8 +102,10 @@ namespace ClassLibrary
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             //add the parameter for the order number to search for
-            DB.AddParameter("@OrderNo", OrderNo);
+            DB.AddParameter("@FunkoNo", orderNo);
             //if one record is found (there should be either one or zero!)
+
+            DB.Execute("sproc_tblOrder_FilterByOrderNo");
             if (DB.Count == 1)
             {
                 //copy the data from the database to the private data members

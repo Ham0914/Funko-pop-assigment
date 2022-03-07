@@ -15,6 +15,11 @@ public partial class _1Viewer : System.Web.UI.Page
         //get the data from the session object
         anOrder = (clsOrder)Session["AnOrder"];
         //display the order number for this entry
-        Response.Write(anOrder.FunkoName);
+        Response.Write(anOrder.FunkoName + "<br/>");
+        Response.Write(anOrder.OrderNo + "<br/>");
+        Response.Write(anOrder.Price + "<br/>");
+        Response.Write(anOrder.DateAdded + "<br/>");
+        Response.Write(anOrder.Available + "<br/>");
+        Response.Write(anOrder.FunkoNo + "<br/>");
     }
 }

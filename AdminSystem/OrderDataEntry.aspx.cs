@@ -20,6 +20,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsOrder AnOrder = new clsOrder();
         //capture the order number
         AnOrder.FunkoName = txtFunkoName.Text;
+
+        AnOrder.FunkoNo = Convert.ToInt32(txtFunkoNo.Text);
+
+        AnOrder.Price = Convert.ToDouble(txtPrice.Text);
+
+        AnOrder.DateAdded = Convert.ToDateTime(txtDateAdded.Text);
+
+        AnOrder.OrderNo = Convert.ToInt32(txtOrderNo.Text);
+
+        AnOrder.Available = chkAvailable.Checked;
+
         //store the address in the session object
         Session["AnOrder"] = AnOrder;
         //navigate to the viewer page
@@ -47,6 +58,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 txtFunkoName.Text = AnOrder.FunkoName;
                 txtDateAdded.Text = AnOrder.DateAdded.ToString();
                 txtPrice.Text = AnOrder.Price.ToString();
+                txtOrderNo.Text = AnOrder.OrderNo.ToString();
             }
             
         }
