@@ -95,9 +95,9 @@ namespace Testing1
             //boolean variable to store the results of the validation 
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 OrderNo = 21;
+            Int32 FunkoNo = 1;
             //invoke the method 
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(FunkoNo);
             //test to see if the result is true
             Assert.IsTrue(Found);
         }
@@ -111,11 +111,11 @@ namespace Testing1
             //create some test data to use with the method
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNo = 21;
+            Int32 FunkoNo = 1;
             //invoke the method
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(FunkoNo);
             //check the address no
-            if (AnOrder.OrderNo != 21)
+            if (AnOrder.OrderNo != 5)
             {
                 OK = false;
             }
@@ -133,9 +133,9 @@ namespace Testing1
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNo = 21;
+            Int32 FunkoNo = 1;
             //invoke the method
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(FunkoNo);
             //check the property
             if (AnOrder.Available != true)
             {
@@ -155,11 +155,11 @@ namespace Testing1
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNo = 21;
+            Int32 FunkoNo = 1;
             //invoke the method
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(FunkoNo);
             //check the property
-            if (AnOrder.DateAdded != Convert.ToDateTime("16/09/2015"))
+            if (AnOrder.DateAdded != Convert.ToDateTime("01/01/2020"))
             {
                 OK = false;
             }
@@ -177,11 +177,11 @@ namespace Testing1
         //create some test data to use with the method
         Boolean OK = true;
         //create some test data to use with the method
-        Int32 FunkoNo = 14;
+        Int32 FunkoNo = 1;
         //invoke the method
         Found = AnOrder.Find(FunkoNo);
             //check the address no
-            if (AnOrder.FunkoNo != 14)
+            if (AnOrder.FunkoNo != 1)
             {
                 OK = false;
             }
@@ -199,9 +199,9 @@ namespace Testing1
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNo = 21;
+            Int32 FunkoNo = 1;
             //invoke the method
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(FunkoNo);
             //check the property
             if (AnOrder.FunkoName != "Hulk")
             {
@@ -221,11 +221,11 @@ namespace Testing1
             //create some test data to use with the method
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 FunkoNo = 14;
+            Int32 FunkoNo = 1;
             //invoke the method
             Found = AnOrder.Find(FunkoNo);
             //check the address no
-            if (AnOrder.Price != 9.99)
+            if (AnOrder.Price != 9.9900)
             {
                 OK = false;
             }
