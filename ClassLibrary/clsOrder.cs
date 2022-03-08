@@ -124,8 +124,12 @@ namespace ClassLibrary
                 //return false indicating a problem
                 return false;
             }
+          }
 
-
-            }
+        public string Valid(string OrderNo, string FunkoName, string Price, string DateAdded)
+        {
+            return "";
         }
+
+    }
     }
