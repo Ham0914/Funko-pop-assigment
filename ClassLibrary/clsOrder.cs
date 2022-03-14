@@ -126,9 +126,69 @@ namespace ClassLibrary
             }
           }
 
-        public string Valid(string OrderNo, string FunkoName, string Price, string DateAdded)
+        public string Valid(string orderNo, string funkoName, string price, string dateAdded)
         {
-            return "";
+            String Error = "";
+            DateTime DateTemp;
+
+            if (funkoName.Length == 0)
+            {
+                Error = Error + "The Funko Name may not be blank : ";
+            }
+            if (funkoName.Length > 30)
+            {
+                Error = Error + "The Funko Name must be less than 30 characters : ";
+            }
+
+            try
+            {
+                DateTemp = Convert.ToDateTime(dateAdded);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "the date was not a valid date : ";
+            }
+            try
+            {
+                if (price.Length == 0)
+                {
+                    Error = Error + "price cannot be 0 : ";
+                }
+                if (price.Length > 9)
+                {
+                    Error = Error + "price cannot be more than 999999999 : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The price was not a valid price : ";
+            }
+
+            try
+            {
+                if (orderNo.Length == 0)
+                {
+                    Error = Error + "Order Number cannot be 0 : ";
+                }
+                if (orderNo.Length > 9)
+                {
+                    Error = Error + "Order Number cannot be more than 999999999 : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The Order Number was not a valid Number : ";
+            }
+
+            return Error;
         }
 
     }
