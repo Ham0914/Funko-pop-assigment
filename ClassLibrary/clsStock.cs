@@ -105,9 +105,13 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string itemQT, string descItem, string dateAdded, string tagItem)
+        public string Valid(string itemQT, string tagItem, string dateAdded, string descItem)
         {
             String Error = "";
+            DateTime DateAddedTemp;
+            int itemQTtemp;
+           // int numIdTemp;
+
 
             if (tagItem.Length == 0)
             {
@@ -119,32 +123,57 @@ namespace ClassLibrary
 
             }
 
+            if (descItem.Length == 0)
+            {
+                Error = Error + "This field should not be empty";
+            }
+            if (descItem.Length > 50)
+            {
+                Error = Error + "Cant be more then 50 ";
+
+            }
+
 
             try
             {
-                int itemQTtemp = Convert.ToInt32(itemQT);
+                itemQTtemp = Convert.ToInt32(itemQT);
                 if (itemQTtemp < 0)
                 {
                     Error = Error + "Cant go lower then 0";
                 }
 
             } catch {
-                Error = Error + "Invalid type";
+                Error = Error + "Invalid type itemqt";
             }
 
+           
+            
+          //  try
+      //     {
+         //       numIdTemp = Convert.ToInt32(numId);
+       //         if (numIdTemp < 0)
+       //         {
+       //             Error = Error + "Cant go lower then 0";
+       //         }
+       //
+       //     } catch
+        //    {
+        //        Error = Error + "Invalid type idnum";
+      //      }
+
+           
             try
             {
-                DateTime DateAddedTemp = Convert.ToDateTime(dateAdded);
+                DateAddedTemp = Convert.ToDateTime(dateAdded);
 
                 if (DateAddedTemp > DateTime.Now.Date)
                 {
                     Error = Error + "Date cannot be in future";
                 }
 
-            }
-            catch
+            }catch
             {
-                Error = Error + "Invalid type";
+                Error = Error + "Invalid type date";
             }
 
             return Error;

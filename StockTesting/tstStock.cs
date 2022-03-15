@@ -7,9 +7,10 @@ namespace Testing4
     [TestClass]
     public class tstStock {
 
+        string NumberID = "1";
         string itemQT = "100";
         string TagItem = "Movie";
-        string descItem = " some desc";
+        string descItem = "some desc";
         string DateAdded = DateTime.Now.Date.ToString();
 
         [TestMethod]
@@ -246,7 +247,7 @@ namespace Testing4
 
             String Error = "";
 
-            Error = AnStock.Valid(itemQT,descItem,DateAdded,TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -260,7 +261,7 @@ namespace Testing4
 
             string itemQT = "-1";
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -275,7 +276,7 @@ namespace Testing4
 
             string itemQT = number.ToString();
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -290,7 +291,7 @@ namespace Testing4
 
             string itemQT = number.ToString();
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -304,7 +305,7 @@ namespace Testing4
 
             string itemQT = "two";
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -317,7 +318,7 @@ namespace Testing4
 
             string TagItem = "";
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -330,7 +331,7 @@ namespace Testing4
 
             string TagItem = "a";
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -343,7 +344,7 @@ namespace Testing4
 
             string TagItem = "aa";
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -357,7 +358,7 @@ namespace Testing4
             string TagItem = "";
             TagItem = TagItem.PadRight(49, 'a');
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -371,7 +372,7 @@ namespace Testing4
             string TagItem = "";
             TagItem = TagItem.PadRight(51, 'a');
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -385,7 +386,7 @@ namespace Testing4
             string TagItem = "";
             TagItem = TagItem.PadRight(25, 'a');
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -399,7 +400,7 @@ namespace Testing4
             string TagItem = "";
             TagItem = TagItem.PadRight(500, 'a');
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -413,8 +414,8 @@ namespace Testing4
 
             string descItem = "";
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
-            Assert.AreEqual(Error, "");
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -426,7 +427,7 @@ namespace Testing4
 
             string descItem = "a";
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -439,7 +440,7 @@ namespace Testing4
 
             string descItem = "aa";
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -453,7 +454,7 @@ namespace Testing4
             string descItem = "";
             descItem = descItem.PadRight(49, 'a');
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -467,7 +468,7 @@ namespace Testing4
             string descItem = "";
             TagItem = descItem.PadRight(51, 'a');
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -481,7 +482,7 @@ namespace Testing4
             string descItem = "";
             descItem = descItem.PadRight(25, 'a');
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -495,8 +496,8 @@ namespace Testing4
             string descItem = "";
             descItem = descItem.PadRight(500, 'a');
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
-            Assert.AreEqual(Error, "");
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -514,7 +515,7 @@ namespace Testing4
 
             string DateAdded = TestDate.ToString();
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -533,7 +534,7 @@ namespace Testing4
 
             string DateAdded = TestDate.ToString();
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -549,8 +550,7 @@ namespace Testing4
             TestDate = DateTime.Now.Date;
 
             string DateAdded = TestDate.ToString();
-
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreEqual(Error, "");
         }
 
@@ -569,7 +569,7 @@ namespace Testing4
 
             string DateAdded = TestDate.ToString();
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -588,7 +588,7 @@ namespace Testing4
 
             string DateAdded = TestDate.ToString();
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -603,7 +603,7 @@ namespace Testing4
 
             string DateAdded = "yes";
 
-            Error = AnStock.Valid(itemQT, descItem, DateAdded, TagItem);
+            Error = AnStock.Valid(itemQT, TagItem, DateAdded, descItem);
             Assert.AreNotEqual(Error, "");
         }
     }
