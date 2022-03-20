@@ -14,27 +14,42 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
 
+
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
         //capture the order number
-        AnOrder.FunkoName = txtFunkoName.Text;
+        String FunkoName = txtFunkoName.Text;
+        String FunkoNo = txtFunkoNo.Text;
+        String Price = txtPrice.Text;
+        String DateAdded = txtDateAdded.Text;
+        String OrderNo = txtOrderNo.Text;
 
-        AnOrder.FunkoNo = Convert.ToInt32(txtFunkoNo.Text);
+        string Error = "";
+        Error = AnOrder.Valid(FunkoName, Price, FunkoNo, DateAdded);
+        if (Error == "")
+        {
+            AnOrder.FunkoName = txtFunkoName.Text;
 
-        AnOrder.Price = Convert.ToDouble(txtPrice.Text);
+            AnOrder.FunkoNo = Convert.ToInt32(txtFunkoNo.Text);
 
-        AnOrder.DateAdded = Convert.ToDateTime(txtDateAdded.Text);
+            AnOrder.Price = Convert.ToInt32(txtPrice.Text);
 
-        AnOrder.OrderNo = Convert.ToInt32(txtOrderNo.Text);
+            AnOrder.DateAdded = Convert.ToDateTime(txtDateAdded.Text);
 
-        AnOrder.Available = chkAvailable.Checked;
+            AnOrder.OrderNo = Convert.ToInt32(txtOrderNo.Text);
 
-        //store the address in the session object
-        Session["AnOrder"] = AnOrder;
-        //navigate to the viewer page
-        Response.Redirect("OrderViewer.aspx");
+
+            //store the address in the session object
+            Session["AnOrder"] = AnOrder;
+            //navigate to the viewer page
+            Response.Redirect("OrderViewer.aspx");
+        }
+        else
+        {
+            lblerror.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
