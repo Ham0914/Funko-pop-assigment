@@ -133,5 +133,72 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string staffEmail, string staffName, string department, string hireDate)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+            //if the staffEmail is blank
+            if (staffEmail.Length == 0)
+            {
+                //record the error
+                Error = Error + "The staff email may not be blank : ";
+            }
+            //if the staff email is greater than 26 characters
+            if (staffEmail.Length > 26)
+            {
+                //record the error
+                Error = Error + "The staff email must be less than 26 characeters : ";
+            }
+            try
+            {
+                //copy the hireDate value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(hireDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+            //if the staffName is blank
+            if (staffName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The staff name may not be blank : ";
+            }
+            //if the staff name is greater than 50 characters
+            if (staffName.Length > 50)
+            {
+                //record the error
+                Error = Error + "The staff name must be less than 50 characeters : ";
+            }
+            //if the department is blank
+            if (department.Length == 0)
+            {
+                //record the error
+                Error = Error + "The department name may not be blank : ";
+            }
+            //if the department name is greater than 50 characters
+            if (department.Length > 50)
+            {
+                //record the error
+                Error = Error + "The department name must be less than 50 characeters : ";
+            }
+            //return any error messages
+            return Error;
+        }
     }
 }
