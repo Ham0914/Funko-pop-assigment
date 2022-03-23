@@ -21,30 +21,26 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsOrder AnOrder = new clsOrder();
         //capture the order number
         String FunkoName = txtFunkoName.Text;
-        String FunkoNo = txtFunkoNo.Text;
         String Price = txtPrice.Text;
         String DateAdded = txtDateAdded.Text;
         String OrderNo = txtOrderNo.Text;
 
         string Error = "";
-        Error = AnOrder.Valid(FunkoName, Price, FunkoNo, DateAdded);
+        Error = AnOrder.Valid(FunkoName, Price, OrderNo, DateAdded);
+
         if (Error == "")
         {
-            AnOrder.FunkoName = txtFunkoName.Text;
-
-            AnOrder.FunkoNo = Convert.ToInt32(txtFunkoNo.Text);
-
+            AnOrder.FunkoName = FunkoName;
+            AnOrder.Available = chkAvailable.Checked;
             AnOrder.Price = Convert.ToInt32(txtPrice.Text);
-
-            AnOrder.DateAdded = Convert.ToDateTime(txtDateAdded.Text);
-
+            AnOrder.DateAdded = Convert.ToDateTime(DateAdded);
             AnOrder.OrderNo = Convert.ToInt32(txtOrderNo.Text);
 
-
-            //store the address in the session object
-            Session["AnOrder"] = AnOrder;
+            clsOrderCollection OrderList = new clsOrderCollection();
+            OrderList.ThisOrder = AnOrder;
+            OrderList.Add();
             //navigate to the viewer page
-            Response.Redirect("OrderViewer.aspx");
+            Response.Redirect("OrderList.aspx");
         }
         else
         {

@@ -72,6 +72,32 @@ namespace Testing1
 
         }
 
+        public void AddMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+
+            clsOrder TestItem = new clsOrder();
+
+            Int32 PrimaryKey = 0;
+
+            TestItem.Available = true;
+            TestItem.FunkoNo = 1;
+            TestItem.FunkoName = "Hulk";
+            TestItem.OrderNo = 1;
+            TestItem.Price = 1;
+            TestItem.DateAdded = DateTime.Now;
+
+            AllOrders.ThisOrder = TestItem;
+
+            PrimaryKey = AllOrders.Add();
+
+            TestItem.FunkoNo = PrimaryKey;
+
+            AllOrders.ThisOrder.Find(PrimaryKey);
+
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
+
     }
 
 }
