@@ -33,11 +33,11 @@ public partial class _1_List : System.Web.UI.Page
 
     protected void btnEdit_Click(object sender, EventArgs e)
     {
-        Int32 OrderNo;
+        Int32 FunkoNo;
         
         if (lstOrderList.SelectedIndex != -1)
         {
-            OrderNo = Convert.ToInt32(lstOrderList.SelectedValue);
+            FunkoNo = Convert.ToInt32(lstOrderList.SelectedValue);
             Session["FunkoNo"] = FunkoNo;
             Response.Redirect("OrderDataEntry.aspx");
         }
