@@ -9,11 +9,31 @@ using System.Web.UI.WebControls;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 FunkoNo;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        FunkoNo = Convert.ToInt32(Session["FunkoNo"]);
+        if (IsPostBack == false)
+        {
+            if (FunkoNo != -1)
+            {
+                DisplayOrder();
+            }
+        }
     }
 
+    void DisplayOrder()
+    {
+        clsOrderCollection Order = new clsOrderCollection();
+        Order.ThisOrder.Find(FunkoNo);
+        txtFunkoNo.Text = Order.ThisOrder.FunkoNo.ToString();
+        txtPrice.Text = Order.ThisOrder.Price.ToString();
+        txtOrderNo.Text = Order.ThisOrder.OrderNo.ToString();
+        txtFunkoNo.Text = Order.ThisOrder.FunkoName;
+        txtDateAdded.Text = Order.ThisOrder.DateAdded.ToString();
+        chkAvailable.Checked = Order.ThisOrder.Available;
+    }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
@@ -30,16 +50,26 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         if (Error == "")
         {
+            AnOrder.FunkoNo = FunkoNo;
             AnOrder.FunkoName = FunkoName;
             AnOrder.Available = chkAvailable.Checked;
             AnOrder.Price = Convert.ToInt32(txtPrice.Text);
             AnOrder.DateAdded = Convert.ToDateTime(DateAdded);
             AnOrder.OrderNo = Convert.ToInt32(txtOrderNo.Text);
-
             clsOrderCollection OrderList = new clsOrderCollection();
-            OrderList.ThisOrder = AnOrder;
-            OrderList.Add();
-            //navigate to the viewer page
+
+            if (FunkoNo == -1)
+            {
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Add();
+        
+            }
+            else
+            {
+                OrderList.ThisOrder.Find(FunkoNo);
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Update();
+            }
             Response.Redirect("OrderList.aspx");
         }
         else
