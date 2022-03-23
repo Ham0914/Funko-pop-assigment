@@ -167,6 +167,47 @@ namespace Testing1
 
         }
 
+        [TestMethod]
+        public void ReportByFunkoNoMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            FilteredOrders.ReportByFunkoNo("");
+            Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByFunkoNoNoneFound()
+        {
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            FilteredOrders.ReportByFunkoNo("xxxxx");
+            Assert.AreEqual(0, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByFunkoNoTestDataFound()
+        {
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            Boolean OK = true;
+            FilteredOrders.ReportByFunkoNo("Hamalam");
+            if (FilteredOrders.Count == 2)
+            {
+                if (FilteredOrders.OrderList[0].FunkoNo != 25)
+                {
+                    OK = false;
+                }
+                if (FilteredOrders.OrderList[1].FunkoNo != 30)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
     }
 
 }

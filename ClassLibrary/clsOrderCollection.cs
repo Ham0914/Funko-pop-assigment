@@ -47,23 +47,9 @@ namespace ClassLibrary
 
         public clsOrderCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblOrder_SelectAll");
-            RecordCount = DB.Count;
-            while (Index < RecordCount)
-            {
-                clsOrder AnOrder = new clsOrder();
-                AnOrder.Available = Convert.ToBoolean(DB.DataTable.Rows[Index]["Available"]);
-                AnOrder.FunkoNo = Convert.ToInt32(DB.DataTable.Rows[Index]["FunkoNo"]);
-                AnOrder.OrderNo = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderNo"]);
-                AnOrder.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateAdded"]);
-                AnOrder.FunkoName = Convert.ToString(DB.DataTable.Rows[Index]["FunkoName"]);
-                AnOrder.Price = Convert.ToInt32(DB.DataTable.Rows[Index]["Price"]);
-                mOrderList.Add(AnOrder);
-                Index++;
-            }
+            PopulateArray(DB);
         }
 
         public int Add()
@@ -97,5 +83,42 @@ namespace ClassLibrary
             DB.AddParameter("@FunkoNo", mThisOrder.FunkoNo);
             DB.Execute("sproc_tblOrder_Delete");
         }
+
+        public void ReportByFunkoNo(string FunkoName)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@FunkoName", FunkoName);
+            DB.Execute("sproc_tblOrder_FilterByFunkoNo");
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+
+            Int32 Count;
+
+            Count = DB.Count;
+
+            mOrderList = new List<clsOrder>();
+
+            while (Index < Count)
+            {
+                clsOrder AnOrder = new clsOrder();
+
+                AnOrder.Available = Convert.ToBoolean(DB.DataTable.Rows[Index]["Available"]);
+                AnOrder.FunkoNo = Convert.ToInt32(DB.DataTable.Rows[Index]["FunkoNo"]);
+                AnOrder.OrderNo = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderNo"]);
+                AnOrder.Price = Convert.ToInt32(DB.DataTable.Rows[Index]["Price"]);
+                AnOrder.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateAdded"]);
+                AnOrder.FunkoName = Convert.ToString(DB.DataTable.Rows[Index]["FunkoName"]);
+
+                mOrderList.Add(AnOrder);
+
+                Index++;
+            }
+        }
+
+
     }
 }
