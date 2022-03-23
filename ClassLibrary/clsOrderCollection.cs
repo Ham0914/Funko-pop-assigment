@@ -77,5 +77,18 @@ namespace ClassLibrary
 
             return DB.Execute("sproc_tblOrder_Insert");
         }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("OrderNo", mThisOrder.OrderNo);
+            DB.AddParameter("FunkoName", mThisOrder.FunkoName);
+            DB.AddParameter("Price", mThisOrder.Price);
+            DB.AddParameter("DateAdded", mThisOrder.DateAdded);
+            DB.AddParameter("Available", mThisOrder.Available);
+            DB.AddParameter("FunkoNo", mThisOrder.FunkoNo);
+
+            DB.Execute("sproc_tblOrder_Update");
+        }
     }
 }

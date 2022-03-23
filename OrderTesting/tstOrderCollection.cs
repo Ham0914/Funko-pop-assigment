@@ -98,6 +98,43 @@ namespace Testing1
             Assert.AreEqual(AllOrders.ThisOrder, TestItem);
         }
 
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+
+            clsOrder TestItem = new clsOrder();
+
+            Int32 PrimaryKey = 0;
+
+            TestItem.Available = true;
+            TestItem.OrderNo = 1;
+            TestItem.FunkoName = "Hulk";
+            TestItem.Price = 1;
+            TestItem.DateAdded = DateTime.Now;
+
+            AllOrders.ThisOrder = TestItem;
+
+            PrimaryKey = AllOrders.Add();
+
+            TestItem.FunkoNo = PrimaryKey;
+
+            TestItem.Available = false;
+            TestItem.OrderNo = 2;
+            TestItem.FunkoName = "Thor";
+            TestItem.Price = 2;
+            TestItem.DateAdded = DateTime.Now;
+
+            AllOrders.ThisOrder = TestItem;
+
+            AllOrders.Update();
+
+            AllOrders.ThisOrder.Find(PrimaryKey);
+
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+
+        }
+
     }
 
 }
