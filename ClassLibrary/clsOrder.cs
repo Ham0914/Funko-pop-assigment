@@ -126,7 +126,7 @@ namespace ClassLibrary
             }
           }
 
-        public string Valid(string orderNo, string funkoName, string price, string dateAdded)
+        public string Valid(String orderNo, string funkoName, string price, string dateAdded)
         {
             String Error = "";
             DateTime DateTemp;
@@ -178,7 +178,7 @@ namespace ClassLibrary
                 {
                     Error = Error + "Order Number cannot be 0 : ";
                 }
-                if (orderNo.Length > 9)
+                if (orderNo.Length > 99)
                 {
                     Error = Error + "Order Number cannot be more than 999999999 : ";
                 }

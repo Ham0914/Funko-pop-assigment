@@ -30,7 +30,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtFunkoNo.Text = Order.ThisOrder.FunkoNo.ToString();
         txtPrice.Text = Order.ThisOrder.Price.ToString();
         txtOrderNo.Text = Order.ThisOrder.OrderNo.ToString();
-        txtFunkoNo.Text = Order.ThisOrder.FunkoName;
+        txtFunkoName.Text = Order.ThisOrder.FunkoName;
         txtDateAdded.Text = Order.ThisOrder.DateAdded.ToString();
         chkAvailable.Checked = Order.ThisOrder.Available;
     }
@@ -100,8 +100,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 txtDateAdded.Text = AnOrder.DateAdded.ToString();
                 txtPrice.Text = AnOrder.Price.ToString();
                 txtOrderNo.Text = AnOrder.OrderNo.ToString();
-            }
-            
+            }          
         }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrderList.aspx");
     }
 }
