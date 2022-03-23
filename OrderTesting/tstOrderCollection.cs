@@ -135,6 +135,38 @@ namespace Testing1
 
         }
 
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+
+            clsOrder TestItem = new clsOrder();
+
+            Int32 PrimaryKey = 0;
+
+            TestItem.Available = true;
+            TestItem.FunkoNo = 1;
+            TestItem.FunkoName = "Hamalam";
+            TestItem.OrderNo = 1;
+            TestItem.Price = 10;
+            TestItem.DateAdded = DateTime.Now;
+
+            AllOrders.ThisOrder = TestItem;
+
+            PrimaryKey = AllOrders.Add();
+
+            TestItem.FunkoNo = PrimaryKey;
+
+            AllOrders.ThisOrder.Find(PrimaryKey);
+
+            AllOrders.Delete();
+
+            Boolean Found = AllOrders.ThisOrder.Find(PrimaryKey);
+
+            Assert.IsFalse(Found);
+
+        }
+
     }
 
 }

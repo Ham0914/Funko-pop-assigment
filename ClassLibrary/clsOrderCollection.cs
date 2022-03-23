@@ -90,5 +90,12 @@ namespace ClassLibrary
 
             DB.Execute("sproc_tblOrder_Update");
         }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@FunkoNo", mThisOrder.FunkoNo);
+            DB.Execute("sproc_tblOrder_Delete");
+        }
     }
 }
