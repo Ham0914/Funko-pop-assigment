@@ -16,19 +16,47 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //Create a new instance of clsStaff
-        clsStaff aStaff = new clsStaff
+        clsStaff aStaff = new clsStaff();
+        //capture the staff ID
+        string staffID = txtStaffID.Text;
+        //capture the staff email
+        string staffEmail = txtStaffEmail.Text;
+        //capture the staff name
+        string staffName = txtStaffName.Text;
+        //capture the department
+        string department = txtDepartment.Text;
+        //capture the hire date
+        string hireDate = txtHireDate.Text;
+        //capture the active
+        string active = chkActive.Text;
+        //variable to store any error messages
+        string Error = "";
+        //validate the data
+        Error = aStaff.Valid(staffEmail, staffName, department, hireDate);
+        if (Error == "")
         {
-            staffID = Convert.ToInt32(txtStaffID.Text),
-            staffEmail = txtStaffEmail.Text,
-            staffName = txtStaffName.Text,
-            department = txtDepartment.Text,
-            HireDate = Convert.ToDateTime(txtHireDate.Text),
-            Active = Convert.ToBoolean(chkActive.Checked)
-        };
-
-        Session["aStaff"] = aStaff;
-
-        Response.Redirect("StaffViewer.aspx");
+            //capture the staff ID
+            aStaff.staffID = Convert.ToInt32(txtStaffID.Text);
+            //capture the staff email
+            aStaff.staffEmail = txtStaffEmail.Text;
+            //capture the staff name
+            aStaff.staffName = txtStaffName.Text;
+            //capture the department
+            aStaff.department = txtDepartment.Text;
+            //capture the hire date
+            aStaff.HireDate = Convert.ToDateTime(txtHireDate.Text);
+            //cpture the active
+            aStaff.Active = Convert.ToBoolean(chkActive.Checked);
+            //store the staff memeber in the session object
+            Session["aStaff"] = aStaff;
+            //redirect to the viewer page
+            Response.Redirect("StaffViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
