@@ -4,7 +4,7 @@ namespace ClassLibrary
 {
     public class clsCustomer
     {
-        private bool mActive;
+        private Boolean mActive;
         public bool Active
         {
             get
@@ -31,7 +31,7 @@ namespace ClassLibrary
         }
 
         //private data member for the CustomerId property
-        private int mCustomerId;
+        private Int32 mCustomerId;
         public int CustomerId
         {
             get
@@ -86,17 +86,33 @@ namespace ClassLibrary
         }
 
 
-        public bool Find(int customerID)
+        public bool Find(int CustomerId)
         {
-            //set the private data members to the test data value
-            mCustomerId = 3;
-            mFirstName = "Buzz";
-            mLastName = "Aldrin";
-            mEmail = "BAldrin@gmail.com";
-            mDateOfBirth = Convert.ToDateTime("20/01/1930");
-            mActive = true;
-            //always return true
-            return true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the paramter for the customer ID to search for
+            DB.AddParameter("@CustomerId", CustomerId);
+            //execute the stord procedure
+            DB.Execute("sproc_tblCustomer_FilterByCustomerId");
+            //if the recod is found (there should be either one or zero!)
+            if (DB.Count == 1)
+            {
+                //coppy the data from the database to the private data members
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+                mFirstName = Convert.ToString(DB.DataTable.Rows[0]["FirstName"]);
+                mLastName = Convert.ToString(DB.DataTable.Rows[0]["LastName"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
+                mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                //return that everything worked ok
+                return true;
+            }
+            //if no record was found
+            else
+            {
+                //return false indicating a problem
+                return false;
+            }
         }
     }
 }
