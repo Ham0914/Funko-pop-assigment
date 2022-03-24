@@ -114,5 +114,71 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string firstName, string lastName, string email, string dateOfBirth)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary varible to stor date values
+            DateTime DateTemp;
+            //if the firstName is blank
+            if (firstName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The first name my not be blank: ";
+            }
+            //if the firstName is greater than 50 characters
+            if (firstName.Length > 50)
+            {
+                Error = Error + "The first name must not be more than 50 characters";
+            }
+            //if the lastName is blank
+            if (lastName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The last name my not be blank: ";
+            }
+            //if the lastName is greater than 50 characters
+            if (lastName.Length > 50)
+            {
+                Error = Error + "The last name must not be more than 50 characters";
+            }
+            //if the email is blank
+            if (email.Length == 0)
+            {
+                //record the error
+                Error = Error + "The email my not be blank: ";
+            }
+            //if the email is greater than 50 characters
+            if (email.Length > 50)
+            {
+                Error = Error + "The email must not be more than 50 characters";
+            }
+            //if the LastName is blank
+            try
+            {
+                //check to see if the date is older than 100 years
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(dateOfBirth);
+                if (DateTemp < DateTime.Now.Date.AddYears(-100))
+                {
+                    //record the error
+                    Error = Error + "The date cannot be more then 100 years the past: ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future: ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The dtae was not a valid date: ";
+            }
+            //return any error messages
+            return Error;
+        } 
     }
 }
