@@ -121,6 +121,7 @@ namespace ClassLibrary
             String Error = "";
             //create a temporary varible to stor date values
             DateTime DateTemp;
+
             //if the firstName is blank
             if (firstName.Length == 0)
             {
@@ -132,6 +133,7 @@ namespace ClassLibrary
             {
                 Error = Error + "The first name must not be more than 50 characters";
             }
+
             //if the lastName is blank
             if (lastName.Length == 0)
             {
@@ -143,6 +145,7 @@ namespace ClassLibrary
             {
                 Error = Error + "The last name must not be more than 50 characters";
             }
+
             //if the email is blank
             if (email.Length == 0)
             {
@@ -154,7 +157,7 @@ namespace ClassLibrary
             {
                 Error = Error + "The email must not be more than 50 characters";
             }
-            //if the LastName is blank
+
             try
             {
                 //check to see if the date is older than 100 years
@@ -177,6 +180,7 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The dtae was not a valid date: ";
             }
+
             //return any error messages
             return Error;
         } 
