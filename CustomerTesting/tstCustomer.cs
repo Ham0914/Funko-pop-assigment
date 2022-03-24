@@ -48,7 +48,7 @@ namespace Testing5
             //create an instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //create some test data to assign to the property
-            int TestData = 1;
+            Int32 TestData = 1;
             //Assign the data to the property
             AnCustomer.CustomerId = TestData;
             //test to see that the two values are the same
@@ -102,9 +102,9 @@ namespace Testing5
             //boolean varible to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the methord
-            int CustomerID = 4;
+            Int32 CustomerId = 4;
             //invoke the methord
-            Found = AnCustomer.Find(CustomerID);
+            Found = AnCustomer.Find(CustomerId);
             //test to see if the result is true
             Assert.IsTrue(Found);
         }
@@ -119,9 +119,9 @@ namespace Testing5
             //boolean varible to record if the data is ok (assume it is)
             Boolean Ok = true;
             //create some test data to use with the methord
-            int CustomerID = 4;
+            Int32 CustomerId = 4;
             //invoke the methord
-            Found = AnCustomer.Find(CustomerID);
+            Found = AnCustomer.Find(CustomerId);
             //check the CoustomerId
             if (AnCustomer.CustomerId != 4)
             {
@@ -141,9 +141,9 @@ namespace Testing5
             //boolean varible to record if the data is ok (assume it is)
             Boolean Ok = true;
             //create some test data to use with the methord
-            int CustomerID = 4;
+            Int32 CustomerId = 4;
             //invoke the methord
-            Found = AnCustomer.Find(CustomerID);
+            Found = AnCustomer.Find(CustomerId);
             //check the property
             if (AnCustomer.FirstName != "Buzz")
             {
@@ -163,9 +163,9 @@ namespace Testing5
             //boolean varible to record if the data is ok (assume it is)
             Boolean Ok = true;
             //create some test data to use with the methord
-            int CustomerID = 4;
+            Int32 CustomerId = 4;
             //invoke the methord
-            Found = AnCustomer.Find(CustomerID);
+            Found = AnCustomer.Find(CustomerId);
             //check the property
             if (AnCustomer.LastName != "Aldrin")
             {
@@ -185,9 +185,9 @@ namespace Testing5
             //boolean varible to record if the data is ok (assume it is)
             Boolean Ok = true;
             //create some test data to use with the methord
-            int CustomerID = 4;
+            Int32 CustomerId = 4;
             //invoke the methord
-            Found = AnCustomer.Find(CustomerID);
+            Found = AnCustomer.Find(CustomerId);
             //check the property
             if (AnCustomer.Email != "BAldrin@gmail.com")
             {
@@ -207,9 +207,9 @@ namespace Testing5
             //boolean varible to record if the data is ok (assume it is)
             Boolean Ok = true;
             //create some test data to use with the methord
-            int CustomerID = 4;
+            Int32 CustomerId = 4;
             //invoke the methord
-            Found = AnCustomer.Find(CustomerID);
+            Found = AnCustomer.Find(CustomerId);
             //check the property
             if (AnCustomer.DateOfBirth != Convert.ToDateTime("20/01/1930"))
             {
@@ -229,9 +229,9 @@ namespace Testing5
             //boolean varible to record if the data is ok (assume it is)
             Boolean Ok = true;
             //create some test data to use with the methord
-            int CustomerID = 4;
+            Int32 CustomerId = 4;
             //invoke the methord
-            Found = AnCustomer.Find(CustomerID);
+            Found = AnCustomer.Find(CustomerId);
             //check the property
             if (AnCustomer.Active != true)
             {
@@ -242,3 +242,4 @@ namespace Testing5
         }
     }
 }
+
