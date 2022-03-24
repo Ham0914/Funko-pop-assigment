@@ -93,5 +93,152 @@ namespace Testing5
             //test to see that the two values are the same
             Assert.AreEqual(AnCustomer.Email, TestData);
         }
+
+        [TestMethod]
+        public void FindMethordOk()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //boolean varible to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the methord
+            int CustomerID = 4;
+            //invoke the methord
+            Found = AnCustomer.Find(CustomerID);
+            //test to see if the result is true
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestCustomerIdFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //boolean varible to store the results of the search
+            Boolean Found = false;
+            //boolean varible to record if the data is ok (assume it is)
+            Boolean Ok = true;
+            //create some test data to use with the methord
+            int CustomerID = 4;
+            //invoke the methord
+            Found = AnCustomer.Find(CustomerID);
+            //check the CoustomerId
+            if (AnCustomer.CustomerId != 4)
+            {
+                Ok = false;
+            }
+            //test to see if the result is correct
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void TestFirstNameFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //boolean varible to store the results of the search
+            Boolean Found = false;
+            //boolean varible to record if the data is ok (assume it is)
+            Boolean Ok = true;
+            //create some test data to use with the methord
+            int CustomerID = 4;
+            //invoke the methord
+            Found = AnCustomer.Find(CustomerID);
+            //check the property
+            if (AnCustomer.FirstName != "Buzz")
+            {
+                Ok = false;
+            }
+            //test to see if the result is correct
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void TestLastNameFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //boolean varible to store the results of the search
+            Boolean Found = false;
+            //boolean varible to record if the data is ok (assume it is)
+            Boolean Ok = true;
+            //create some test data to use with the methord
+            int CustomerID = 4;
+            //invoke the methord
+            Found = AnCustomer.Find(CustomerID);
+            //check the property
+            if (AnCustomer.LastName != "Aldrin")
+            {
+                Ok = false;
+            }
+            //test to see if the result is correct
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void TestEmailFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //boolean varible to store the results of the search
+            Boolean Found = false;
+            //boolean varible to record if the data is ok (assume it is)
+            Boolean Ok = true;
+            //create some test data to use with the methord
+            int CustomerID = 4;
+            //invoke the methord
+            Found = AnCustomer.Find(CustomerID);
+            //check the property
+            if (AnCustomer.Email != "BAldrin@gmail.com")
+            {
+                Ok = false;
+            }
+            //test to see if the result is correct
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void DateOfBirthFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //boolean varible to store the results of the search
+            Boolean Found = false;
+            //boolean varible to record if the data is ok (assume it is)
+            Boolean Ok = true;
+            //create some test data to use with the methord
+            int CustomerID = 4;
+            //invoke the methord
+            Found = AnCustomer.Find(CustomerID);
+            //check the property
+            if (AnCustomer.DateOfBirth != Convert.ToDateTime("20/01/1930"))
+            {
+                Ok = false;
+            }
+            //test to see if the result is correct
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void ActiveFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //boolean varible to store the results of the search
+            Boolean Found = false;
+            //boolean varible to record if the data is ok (assume it is)
+            Boolean Ok = true;
+            //create some test data to use with the methord
+            int CustomerID = 4;
+            //invoke the methord
+            Found = AnCustomer.Find(CustomerID);
+            //check the property
+            if (AnCustomer.Active != true)
+            {
+                Ok = false;
+            }
+            //test to see if the result is correct
+            Assert.IsTrue(Ok);
+        }
     }
 }
