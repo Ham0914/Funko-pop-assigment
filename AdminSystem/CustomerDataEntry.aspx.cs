@@ -18,27 +18,37 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsCustomer
         clsCustomer AnCustomer = new clsCustomer();
         //capture the first name
-        AnCustomer.FirstName = txtFirstName.Text;
-        //store the first name in the session object
-        Session["AnCustomer"] = AnCustomer;
+        String FirstName = txtFirstName.Text;
         //capture the last name
-        AnCustomer.LastName = txtLastName.Text;
-        //store the last name in the session object
-        Session["AnCustomer"] = AnCustomer;
+        String LastName = txtLastName.Text;
         //capture the Email
-        AnCustomer.Email = txtEmail.Text;
-        //store the email in the session object
-        Session["AnCustomer"] = AnCustomer;
-        //capture the date of birth and convert it into a date
-        ///String dateInput = txtDateOfBirth;
-        ///var parsedDate = DateTime.Parse(dateInput);
-        ///AnCustomer.DateOfBirth = txtDateOfBirth.t;
-        //capture the active
-        AnCustomer.Active = chkActive.Checked;
-        //store the active in the session object
-        Session["AnCustomer"] = AnCustomer;
-        //navigate to the viewer page
-        Response.Redirect("CustomerViewer.aspx");
+        String Email = txtEmail.Text;
+        //capture the date of birth
+        String DateOfBirth = txtDateOfBirth.Text;
+        //varible to stor any error messages
+        String Error = "";
+        //validate the data
+        Error = AnCustomer.Valid(FirstName, LastName, Email, DateOfBirth);
+        if (Error == "")
+        {
+            //capture the first name
+            AnCustomer.FirstName = FirstName;
+            //capture the last name
+            AnCustomer.LastName = LastName;
+            //capture the email
+            AnCustomer.Email = Email;
+            //capture the date of birth
+            AnCustomer.DateOfBirth = Convert.ToDateTime(DateOfBirth);
+            //store the customer in the session object
+            Session["AnCustomer"] = AnCustomer;
+            //redirect to the viewer page
+            Response.Write("CustomerViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
