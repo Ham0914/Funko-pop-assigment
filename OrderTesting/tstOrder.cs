@@ -572,7 +572,7 @@ namespace Testing1
             //invoke the method
             Error = AnOrder.Valid(Price, OrderNo, FunkoName, DateAdded);
             //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -587,7 +587,7 @@ namespace Testing1
             //invoke the method
             Error = AnOrder.Valid(Price, OrderNo, FunkoName, DateAdded);
             //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]

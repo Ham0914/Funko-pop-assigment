@@ -126,6 +126,28 @@ namespace ClassLibrary
             }
           }
 
+        public string Valid2(String FunkoNo)
+        {
+            String Error = "";
+
+            try
+            {
+                if (FunkoNo.Length == 0)
+                {
+                    Error = Error + "Funko Number cannot be 0 : ";
+                }
+                if (FunkoNo.Length > 99)
+                {
+                    Error = Error + "Funko Number cannot be more than 999999999 : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The Funko Number was not a valid Number : ";
+            }
+            return Error;
+        }
+
         public string Valid(String orderNo, string funkoName, string price, string dateAdded)
         {
             String Error = "";
