@@ -87,20 +87,31 @@ public partial class _1_DataEntry : System.Web.UI.Page
             Int32 FunkoNo;
             //variable to store the result of the find operation
             Boolean Found = false;
-            //get the primary key entered by the user
-            FunkoNo = Convert.ToInt32(txtFunkoNo.Text);
-            //find the record
-            Found = AnOrder.Find(FunkoNo);
-            //if found
-            if (Found == true)
+
+            String FunkoNumber = txtFunkoNo.Text;
+
+            string Error = "";
+            Error = AnOrder.Valid2(FunkoNumber);
+
+            if (Error == "")
             {
-                //display the values of the properties in the form
-                txtFunkoNo.Text = AnOrder.FunkoNo.ToString();
-                txtFunkoName.Text = AnOrder.FunkoName;
-                txtDateAdded.Text = AnOrder.DateAdded.ToString();
-                txtPrice.Text = AnOrder.Price.ToString();
-                txtOrderNo.Text = AnOrder.OrderNo.ToString();
-            }          
+                AnOrder.FunkoNo = Convert.ToInt32(txtFunkoNo.Text);
+
+                //get the primary key entered by the user
+                FunkoNo = Convert.ToInt32(txtFunkoNo.Text);
+                //find the record
+                Found = AnOrder.Find(FunkoNo);
+                //if found
+                if (Found == true)
+                {
+                    //display the values of the properties in the form
+                    txtFunkoNo.Text = AnOrder.FunkoNo.ToString();
+                    txtFunkoName.Text = AnOrder.FunkoName;
+                    txtDateAdded.Text = AnOrder.DateAdded.ToString();
+                    txtPrice.Text = AnOrder.Price.ToString();
+                    txtOrderNo.Text = AnOrder.OrderNo.ToString();
+                }
+            }
         }
     }
 
