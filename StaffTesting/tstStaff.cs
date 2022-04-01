@@ -414,10 +414,10 @@ namespace Testing2
             String Error = "";
             //create a variable to store the test date data
             DateTime TestDate;
-            //set the date totodays date
+            //set the date to todays date
             TestDate = DateTime.Now.Date;
-            //change the date to whatever the date is less 1 day
-            TestDate = TestDate.AddDays(-1);
+            //change the date to whatever the date is less 366 days
+            TestDate = TestDate.AddDays(-366);
             //convert the date variable to a string variable
             string HireDate = TestDate.ToString();
             //invoke the method
@@ -435,8 +435,10 @@ namespace Testing2
             String Error = "";
             //create a variable to store the test date data
             DateTime TestDate;
-            //set the date totodays date
+            //set the date to todays date
             TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is one year ago
+            TestDate = TestDate.AddYears(-1);
             //convert the date variable to a string variable
             string HireDate = TestDate.ToString();
             //invoke the method
@@ -456,14 +458,14 @@ namespace Testing2
             DateTime TestDate;
             //set the date totodays date
             TestDate = DateTime.Now.Date;
-            //change the date to whatever the date is plus 1 day
-            TestDate = TestDate.AddDays(1);
+            //change the date to whatever the date is less 364 days
+            TestDate = TestDate.AddDays(-364);
             //convert the date variable to a string variable
             string HireDate = TestDate.ToString();
             //invoke the method
             Error = aStaff.Valid(staffEmail, staffName, department, HireDate);
             //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -626,7 +628,6 @@ namespace Testing2
             Assert.AreNotEqual(Error, "");
         }
 
-        //-----------------------------DEPARTMENT--------------------------------
         [TestMethod]
         public void DepartmentMinLessOne()
         {

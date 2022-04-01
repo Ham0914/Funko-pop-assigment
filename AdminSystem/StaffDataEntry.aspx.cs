@@ -8,17 +8,42 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primay key with page level scope
+    Int32 staffID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of the staff ID to be processed
+        staffID = Convert.ToInt32(Session["staffID"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (staffID != -1)
+            {
+                //display the current data for the record
+                DisplayStaff();
+            }
+        }
+    }
 
+    void DisplayStaff()
+    {
+        //create an instance of the Staff collection
+        clsStaffCollection Staff = new clsStaffCollection();
+        //find the ecord to update
+        Staff.ThisStaff.Find(staffID);
+        //display the data for this record
+        txtStaffID.Text = Staff.ThisStaff.staffID.ToString();
+        txtStaffEmail.Text = Staff.ThisStaff.staffEmail;
+        txtStaffName.Text = Staff.ThisStaff.staffName;
+        txtDepartment.Text = Staff.ThisStaff.department;
+        txtHireDate.Text = Staff.ThisStaff.HireDate.ToString();
+        chkActive.Checked = Staff.ThisStaff.Active;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //Create a new instance of clsStaff
         clsStaff aStaff = new clsStaff();
-        //capture the staff ID
-        string staffID = txtStaffID.Text;
         //capture the staff email
         string staffEmail = txtStaffEmail.Text;
         //capture the staff name
@@ -36,21 +61,40 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             //capture the staff ID
-            aStaff.staffID = Convert.ToInt32(txtStaffID.Text);
+            aStaff.staffID = staffID;
             //capture the staff email
-            aStaff.staffEmail = txtStaffEmail.Text;
+            aStaff.staffEmail = staffEmail;
             //capture the staff name
-            aStaff.staffName = txtStaffName.Text;
+            aStaff.staffName = staffName;
             //capture the department
-            aStaff.department = txtDepartment.Text;
+            aStaff.department = department;
             //capture the hire date
-            aStaff.HireDate = Convert.ToDateTime(txtHireDate.Text);
-            //cpture the active
-            aStaff.Active = Convert.ToBoolean(chkActive.Checked);
-            //store the staff memeber in the session object
-            Session["aStaff"] = aStaff;
-            //redirect to the viewer page
-            Response.Redirect("StaffViewer.aspx");
+            aStaff.HireDate = Convert.ToDateTime(hireDate);
+            //capture active
+            aStaff.Active = chkActive.Checked;
+            //create a new instance of the staff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+            
+            //if this is a new record i.e. staffID = -1 then add the data
+            if (staffID == -1)
+            {
+                //set the ThisStaff property
+                StaffList.ThisStaff = aStaff;
+                //add the new record
+                StaffList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                StaffList.ThisStaff.Find(staffID);
+                //set the ThisStaff property
+                StaffList.ThisStaff = aStaff;
+                //update the record
+                StaffList.Update();
+            }
+            //redirect back to the list page
+            Response.Redirect("StaffList.aspx");
         }
         else
         {
