@@ -156,16 +156,17 @@ namespace ClassLibrary
             {
                 //copy the hireDate value to the DateTemp variable
                 DateTemp = Convert.ToDateTime(hireDate);
-                if (DateTemp < DateTime.Now.Date)
-                {
-                    //record the error
-                    Error = Error + "The date cannot be in the past : ";
-                }
                 //check to see if the date is greater than today's date
                 if (DateTemp > DateTime.Now.Date)
                 {
                     //record the error
                     Error = Error + "The date cannot be in the future : ";
+                }
+
+                if (DateTemp < DateTime.Now.Date.AddDays(-365))
+                {
+                    //record the error
+                    Error = Error + "The date cannot be more than one year ago : ";
                 }
             }
             catch
