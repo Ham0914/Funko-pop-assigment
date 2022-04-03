@@ -39,10 +39,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnCustomer.Email = Email;
             //capture the date of birth
             AnCustomer.DateOfBirth = Convert.ToDateTime(DateOfBirth);
-            //store the customer in the session object
-            Session["AnCustomer"] = AnCustomer;
-            //redirect to the viewer page
-            Response.Write("CustomerViewer.aspx");
+            //capture active
+            AnCustomer.Active = chkActive.Checked;
+            //create a new instance of the address collection
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            //set the ThisCustomer property
+            CustomerList.ThisCustomer = AnCustomer;
+            //Add the new record
+            CustomerList.Add();
+            //redirect back to the listpage
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {
@@ -50,6 +56,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             lblError.Text = Error;
         }
     }
+
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
