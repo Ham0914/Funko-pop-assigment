@@ -87,15 +87,31 @@ namespace ClassLibrary
         {
             //adds a new record to the database based on the values of mThisCustomer
             //connect to the databse
-            clsDataConnection Db = new clsDataConnection();
+            clsDataConnection DB = new clsDataConnection();
             //set the parameters for the stored procedure
-            Db.AddParameter("FirstName", mThisCustomer.FirstName);
-            Db.AddParameter("LastName", mThisCustomer.LastName);
-            Db.AddParameter("Email", mThisCustomer.Email);
-            Db.AddParameter("DateOfBirth", mThisCustomer.DateOfBirth);
-            Db.AddParameter("Active", mThisCustomer.Active);
+            DB.AddParameter("FirstName", mThisCustomer.FirstName);
+            DB.AddParameter("LastName", mThisCustomer.LastName);
+            DB.AddParameter("Email", mThisCustomer.Email);
+            DB.AddParameter("DateOfBirth", mThisCustomer.DateOfBirth);
+            DB.AddParameter("Active", mThisCustomer.Active);
             //execute the query returning the primary key value
-            return Db.Execute("sproc_tblCustomer_Insert");
+            return DB.Execute("sproc_tblCustomer_Insert");
+        }
+
+        public void Update()
+        {
+            //update an existing record based on the values of ThisCustomer
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("CustomerId", mThisCustomer.CustomerId);
+            DB.AddParameter("FirstName", mThisCustomer.FirstName);
+            DB.AddParameter("LastName", mThisCustomer.LastName);
+            DB.AddParameter("Email", mThisCustomer.Email);
+            DB.AddParameter("DateOfBirth", mThisCustomer.DateOfBirth);
+            DB.AddParameter("Active", mThisCustomer.Active);
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_Update");
         }
     }
 }
