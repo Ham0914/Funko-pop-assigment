@@ -27,7 +27,7 @@ public partial class _1_List : System.Web.UI.Page
         //set the name of the primary key
         lstCustomerList.DataValueField = "CustomerId";
         //set the data feild to be displayed
-        lstCustomerList.DataValueField = "FirstName";
+        lstCustomerList.DataTextField = "FirstName";
         //bind the data to the list
         lstCustomerList.DataBind();
     }
