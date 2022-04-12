@@ -226,9 +226,23 @@ namespace CustomerTesting
             //check that the correct number of records are found
             if(FilteredCustomers.Count == 2)
             {
-                //check that the first record is ID 32
-                if (FilteredCustomers.CustomerList[0].CustomerId !)
+                //check that the first record is ID 1075
+                if (FilteredCustomers.CustomerList[0].CustomerId != 1075)
+                {
+                    Ok = false;
+                }
+                //check that the first record is ID 1076
+                if (FilteredCustomers.CustomerList[1].CustomerId != 1076)
+                {
+                    Ok = false;
+                }
             }
+            else
+            {
+                Ok = false;
+            }
+            //test to see that there are no records
+            Assert.IsTrue(Ok);
         }
     }
 }
