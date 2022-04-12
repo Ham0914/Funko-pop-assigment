@@ -86,4 +86,34 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record to delete from the list";
         }
     }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        //create an instance of the Customer collection
+        clsCustomerCollection Customers = new clsCustomerCollection();
+        Customers.ReportByFirstName(txtFilter.Text);
+        lstCustomerList.DataSource = Customers.CustomerList;
+        //set the name of the primary key
+        lstCustomerList.DataValueField = "CustomerId";
+        //set the name of the feild to display
+        lstCustomerList.DataTextField = "FirstName";
+        //bind the data to the list
+        lstCustomerList.DataBind();
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        //create an instance of the customer collection
+        clsCustomerCollection Customers = new clsCustomerCollection();
+        Customers.ReportByFirstName("");
+        //clear any existing filter to tidy up the interface
+        txtFilter.Text = "";
+        lstCustomerList.DataSource = Customers.CustomerList;
+        //set the name of the primary key
+        lstCustomerList.DataTextField = "CustomerId";
+        //set the name of the field to be display
+        lstCustomerList.DataTextField = "FirstName";
+        //bind the data to the list
+        lstCustomerList.DataBind();
+    }
 }
