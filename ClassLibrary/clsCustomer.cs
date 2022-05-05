@@ -119,7 +119,7 @@ namespace ClassLibrary
         {
             //create a string variable to store the error
             String Error = "";
-            //create a temporary varible to stor date values
+            //create a temporary varible to store date values
             DateTime DateTemp;
 
             //if the firstName is blank
@@ -178,7 +178,7 @@ namespace ClassLibrary
             catch
             {
                 //record the error
-                Error = Error + "The dtae was not a valid date: ";
+                Error = Error + "The date was not a valid date: ";
             }
 
             //return any error messages
